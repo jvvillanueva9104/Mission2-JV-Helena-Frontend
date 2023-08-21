@@ -1,0 +1,50 @@
+.searchInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.searchHeader {
+  font-size: 4rem;
+  font-family: "Comic Neue", sans-serif;
+  transform: translateY(-6rem);
+}
+
+.fileUpload {
+  /* border: 1px solid black; */
+  font-size: 1.2rem;
+}
+
+.fileUploadContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.uploadBtn {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.uploadBtn:hover {
+  background-color: black;
+  color: white;
+}
+
+.uploadedImage {
+  height: 10rem;
+  width: auto;
+}
+
+.removeBtn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transform: translateY(-13px);
+}
