@@ -1,10 +1,13 @@
 import React from "react";
 import "./SearchInput.css";
 import { useState } from "react";
+import axios from "axios";
 
 const SearchInput = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
+  const [carModel, setCarModel] = useState("");
+  const [carMake, setCarMake] = useState("");
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -18,15 +21,60 @@ const SearchInput = () => {
     }
   };
 
-  console.log(uploadedImage);
-
   const handleRemoveImage = () => {
     setUploadedImage(null);
   };
 
-  const handleUploadClick = () => {
+  const handleUploadClick = async () => {
+    if (uploadedImage) {
+      try {
+        // Convert data URL to a Blob object
+        const imageBlob = await (await fetch(uploadedImage)).blob();
+
+        // Create a FormData object to send the image as binary data
+        const formData = new FormData();
+        formData.append("image", imageBlob);
+
+        // Send the FormData to the API endpoint using axios
+        const response = await axios.post(
+          "http://localhost:4000/car_Finder",
+          formData
+        );
+
+        const carMakePredic = response.data.carMakePredic;
+        const highestProbabilityPrediction = carMakePredic.predictions.reduce(
+          (highest, prediction) =>
+            prediction.probability > highest.probability ? prediction : highest,
+          { probability: 0 }
+        );
+
+        setCarModel(highestProbabilityPrediction.tagName);
+
+        ///
+        const carModelPredic = response.data.carModelPredic;
+
+        const highestProbabilityPrediction2 = carModelPredic.predictions.reduce(
+          (highest, prediction) =>
+            prediction.probability > highest.probability ? prediction : highest,
+          { probability: 0 }
+        );
+
+        setCarMake(highestProbabilityPrediction2.tagName);
+
+        console.log(carMakePredic);
+        console.log(carModelPredic);
+
+        // Handle the response here if needed
+        console.log("API response:", response.data);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    }
     setIsClicked(true);
   };
+
+  console.log(carModel);
+  console.log(carMake);
 
   return (
     <div className="searchInputContainer">
@@ -64,7 +112,7 @@ const SearchInput = () => {
           {isClicked && (
             <iframe
               title="Turners Search Results"
-              src="https://www.turners.co.nz/Cars/Used-Cars-for-Sale/audi/?sortorder=7&pagesize=20&pageno=1&issearchsimilar=true&types=hatchback&make=audi"
+              src={`https://www.turners.co.nz/Cars/Used-Cars-for-Sale/audi/?sortorder=7&pagesize=20&pageno=1&issearchsimilar=true&types=${carMake}&make=${carModel}`}
               width="100%"
               height="733"
               frameborder="0"
