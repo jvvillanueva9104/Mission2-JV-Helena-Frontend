@@ -8,8 +8,9 @@
 
 .searchHeader {
   font-size: 4rem;
-  font-family: "Comic Neue", sans-serif;
-  transform: translateY(-6rem);
+  font-family: "Lato", sans-serif;
+  /* transform: translateY(-6rem); */
+  margin-top: -15rem;
 }
 
 .fileUpload {
@@ -41,10 +42,15 @@
 .uploadedImage {
   height: 10rem;
   width: auto;
+  margin-top: 2rem;
 }
 
 .removeBtn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   transform: translateY(-13px);
+}
+
+.iFrame {
+  z-index: 1;
 }
