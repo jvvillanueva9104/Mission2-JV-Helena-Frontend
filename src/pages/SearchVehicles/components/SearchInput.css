@@ -6,18 +6,32 @@
   width: 100%;
 }
 
+.searchTextsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .searchHeader {
   font-size: 4rem;
   font-family: "Lato", sans-serif;
   /* transform: translateY(-6rem); */
-  margin-top: -15rem;
-  margin-bottom: 1rem;
+  /* margin-top: -15rem;
+  margin-bottom: 1rem; */
   color: rgba(0, 0, 0, 0.5);
+}
+
+.searchText {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1.4rem;
 }
 
 .fileUpload {
   /* border: 1px solid black; */
   font-size: 1.2rem;
+  margin-top: 2rem;
 }
 
 .fileUploadContainer {
