@@ -80,9 +80,14 @@ const SearchInput = () => {
     <div className="searchInputContainer">
       {!isClicked ? (
         <div>
-          <h1 className="searchHeader" data-aos="fade-left">
-            Find The Car Of Your Dreams!
-          </h1>
+          <div className="searchTextsContainer">
+            <h1 className="searchHeader" data-aos="fade-left">
+              Find The Car Of Your Dreams!
+            </h1>
+            <p className="searchText" data-aos="fade-right">
+              Start by uploading a photo of the car you're looking for below:
+            </p>
+          </div>
           <div className="fileUploadContainer">
             {uploadedImage && (
               <div>
