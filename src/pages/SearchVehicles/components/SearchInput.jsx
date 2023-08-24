@@ -80,7 +80,9 @@ const SearchInput = () => {
     <div className="searchInputContainer">
       {!isClicked ? (
         <div>
-          <h1 className="searchHeader">Find The Car Of Your Dreams</h1>
+          <h1 className="searchHeader" data-aos="fade-left">
+            Find The Car Of Your Dreams!
+          </h1>
           <div className="fileUploadContainer">
             {uploadedImage && (
               <div>
@@ -99,9 +101,14 @@ const SearchInput = () => {
               className="fileUpload"
               type="file"
               onChange={handleFileChange}
+              data-aos="fade-up"
             />
             {uploadedImage && (
-              <button className="uploadBtn" onClick={handleUploadClick}>
+              <button
+                className="uploadBtn"
+                onClick={handleUploadClick}
+                data-aos="zoom-in"
+              >
                 Upload
               </button>
             )}
@@ -112,12 +119,12 @@ const SearchInput = () => {
           {isClicked && (
             <iframe
               title="Turners Search Results"
-              src={`https://www.turners.co.nz/Cars/Used-Cars-for-Sale/audi/?sortorder=7&pagesize=20&pageno=1&issearchsimilar=true&types=${carMake}&make=${carModel}`}
+              src={`https://www.turners.co.nz/Cars/Used-Cars-for-Sale/${carModel}/?sortorder=7&pagesize=20&pageno=1&issearchsimilar=true&types=${carMake}&make=${carModel}`}
               width="100%"
               height="733"
-              frameborder="0"
               loading="lazy"
               className="iFrame"
+              data-aos="zoom-in"
             ></iframe>
           )}
         </>
